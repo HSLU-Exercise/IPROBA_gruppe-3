@@ -1,0 +1,11 @@
+# Fallback owners
+*                       @school-org/maintainers
+
+# Frontend (Angular)
+src/**                  @school-org/frontend
+
+# Backend API
+api/**                  @school-org/backend
+
+# Docs
+docs/**                 @school-org/docs
