@@ -1,11 +1,6 @@
 # Fallback owners
-*                       @school-org/maintainers
+*                       @HSLU-Exercise/admin
 
-# Frontend (Angular)
-src/**                  @school-org/frontend
+# Lars Folder
+/Lars                   @HSLU-Exercise/IPROBA_gruppe-3/Lars
 
-# Backend API
-api/**                  @school-org/backend
-
-# Docs
-docs/**                 @school-org/docs
