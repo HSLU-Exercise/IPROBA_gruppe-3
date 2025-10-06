@@ -1,7 +1,9 @@
 name: Enforce Branch Flow
 on:
   pull_request:
+    branches: [ main, integration, production ]
     types: [opened, synchronize, reopened, ready_for_review]
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -10,9 +12,34 @@ jobs:
         run: |
           BASE="${{ github.base_ref }}"
           HEAD="${{ github.head_ref }}"
-          if { [ "$BASE" = "integration" ] && [ "$HEAD" = "main" ]; } || \
-             { [ "$BASE" = "production" ] && [ "$HEAD" = "integration" ]; }; then
+
+          # Protected env branches
+          PROTECTED_MAIN="main"
+          PROTECTED_INT="integration"
+          PROTECTED_PROD="production"
+
+          # Allowed flows:
+          # 1) feature/* (or any non-protected)  -> main
+          # 2) main                              -> integration
+          # 3) integration                       -> production
+
+          if { [ "$BASE" = "$PROTECTED_MAIN" ] \
+               && [ "$HEAD" != "$PROTECTED_MAIN" ] \
+               && [ "$HEAD" != "$PROTECTED_INT" ] \
+               && [ "$HEAD" != "$PROTECTED_PROD" ]; }; then
+            echo "Flow OK: $HEAD -> $BASE"
             exit 0
           fi
-          echo "::error ::Invalid flow. Allowed: main→integration, integration→production."
+
+          if { [ "$BASE" = "$PROTECTED_INT" ] && [ "$HEAD" = "$PROTECTED_MAIN" ]; }; then
+            echo "Flow OK: $HEAD -> $BASE"
+            exit 0
+          fi
+
+          if { [ "$BASE" = "$PROTECTED_PROD" ] && [ "$HEAD" = "$PROTECTED_INT" ]; }; then
+            echo "Flow OK: $HEAD -> $BASE"
+            exit 0
+          fi
+
+          echo "::error ::Invalid branch flow: $HEAD -> $BASE. Allowed: feature→main, main→integration, integration→production."
           exit 1
