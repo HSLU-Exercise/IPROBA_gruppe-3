@@ -14,13 +14,13 @@ jobs:
           HEAD="${{ github.head_ref }}"
 
           # Protected env branches
-          PROTECTED_MAIN="main"
+          PROTECTED_MAIN="development"
           PROTECTED_INT="integration"
           PROTECTED_PROD="production"
 
           # Allowed flows:
-          # 1) feature/* (or any non-protected)  -> main
-          # 2) main                              -> integration
+          # 1) feature/* (or any non-protected)  -> development
+          # 2) development                       -> integration
           # 3) integration                       -> production
 
           if { [ "$BASE" = "$PROTECTED_MAIN" ] \
