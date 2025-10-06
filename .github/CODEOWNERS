@@ -1,14 +1,14 @@
 # Global default owners (fallback)
-*                               @loaors @bitflei
+* @LarsAtassi @bitflei
 
-# Frontend (example)
-frontend/                        @Linksspringer
+# Frontend
+/frontend/ @Linksspringer
 
-# Backend (example)
-backend/                         @Puyalavan
+# Backend
+/backend/ @Puyalavan
 
 # Docs
-docs/                            @shashani0204
+/docs/ @shashani0204
 
 # CI/CD & repo config
-.github/                         @loaors
+/.github/ @LarsAtassi
