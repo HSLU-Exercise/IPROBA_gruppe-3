@@ -1,6 +1,14 @@
-# Fallback owners
-*                       @HSLU-Exercise/admin
+# Global default owners (fallback)
+*                               @loaors @bitflei
 
-# Lars Folder
-/Lars                   @HSLU-Exercise/IPROBA_gruppe-3/Lars
+# Frontend (example)
+frontend/                        @Linksspringer
 
+# Backend (example)
+backend/                         @Puyalavan
+
+# Docs
+docs/                            @shashani0204
+
+# CI/CD & repo config
+.github/                         @loaors
